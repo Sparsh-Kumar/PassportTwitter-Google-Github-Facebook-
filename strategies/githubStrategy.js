@@ -4,7 +4,7 @@
 const passport = require ('passport');
 const githubStrategy = require ('passport-github');
 const path = require ('path');
-const { UserModel } = require (path.resolve (__dirname, '..', 'database', 'models', 'UserModel'));
+const { githubModel } = require (path.resolve (__dirname, '..', 'database', 'models', 'githubModel'));
 const { config: { githubConfig } } = require (path.resolve (__dirname, '..', 'config', 'config'));
 
 // using the github Strategy with passport
@@ -15,9 +15,9 @@ passport.use (new githubStrategy (
         callbackURL: githubConfig.callbackURL
     },
     (accessToken, refreshToken, profile, done) => {
-        UserModel.findOrCreate ({
+        githubModel.findOrCreate ({
             username: profile._json.login,
-            github_url: profile._json.html_url
+            githubURL: profile._json.html_url
         }).then ((user) => {
             return done (null, user);
         }).catch ((error) => {

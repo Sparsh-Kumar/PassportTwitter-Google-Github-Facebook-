@@ -1,19 +1,24 @@
 const config = {
     PORT: 80,
-    mongooseURI: "your mongodb URI",
+    mongooseURI: "YOUR MONGO DATABASE URL",
     cookieName: 'appCookies',
     cookieLifeTime: '60000',
     isSecure: false,
     CookieSecret: '#@#%@#%!',
     githubConfig: {
-        clientID: 'github client ID',
-        clientSecret: 'github client Secret',
-        callbackURL: 'github callback URL'
+        clientID: 'YOUR GITHUB CLIENT ID',
+        clientSecret: 'YOUR GITHUB CLIENT SECRET',
+        callbackURL: 'YOUR GITHUB CALLBACK URL'
     },
     googleConfig: {
-        clientID: 'google client ID',
-        clientSecret: 'google client secret',
-        callbackURL: 'google callback URL'
+        clientID: 'YOUR GOOGLE CLIENT ID',
+        clientSecret: 'YOUR GOOGLE CLIENT SECRE',
+        callbackURL: 'YOUR GOOGLE CALLBACK URL'
+    },
+    facebookConfig: {
+        clientID: 'YOUR FACEBOOK CLIENT ID',
+        clientSecret: 'YOUR FACEBOOK CLIENT SECRET',
+        callbackURL: 'YOUR FACEBOOK CALLBACK URL'
     }
 }
 

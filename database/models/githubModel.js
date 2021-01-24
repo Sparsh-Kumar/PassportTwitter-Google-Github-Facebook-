@@ -1,5 +1,6 @@
 
 
+
 // importing all the modules
 
 const mongoose = require ('mongoose');
@@ -7,13 +8,15 @@ const uniqueValidator = require ('mongoose-unique-validator');
 const path = require ('path');
 const { config } = require (path.resolve (__dirname, '..', '..', 'config', 'config'));
 const findOrCreate = require ('mongoose-findorcreate');
-const { validateUsername, validateEmail } = require (path.resolve (__dirname, '..', '..', 'validators', 'validators'));
+const { validateEmail, validateUsername } = require (path.resolve (__dirname, '..', '..', 'validators', 'validators'));
 
-// defining the userSchema
-const UserSchema = new mongoose.Schema ({
+
+// defining the githubSchema
+const githubSchema = new mongoose.Schema ({
 
     username: {
         type: String,
+        required: true,
         unique: true,
         trim: true,
         validate: {
@@ -24,37 +27,25 @@ const UserSchema = new mongoose.Schema ({
         }
     },
 
-    email: {
-
+    githubURL: {
         type: String,
+        required: true,
         unique: true,
-        trim: true,
-        validate: {
-            validator: (email) => {
-                return validateEmail (email);
-            },
-            message: '{VALUE} is not a valid email'
-        }
-    },
-
-    github_url: {
-        type: String,
-        required: false,
-        trim: true,
+        trim: true
     }
 
 }, { timestamps: true });
 
-// making use of the uniqueValidator plugin
+// making use of unique plugin
 mongoose.plugin (uniqueValidator);
 
 // making use of findOrCreate plugin
 mongoose.plugin (findOrCreate);
 
-// making the userModel
-const UserModel = mongoose.model ('user', UserSchema);
+// making the githubModel
+const githubModel = mongoose.model ('github', githubSchema);
 
-// exporting the userModel
+// exporting the githubModel for usage
 module.exports = {
-    UserModel
+    githubModel
 }
